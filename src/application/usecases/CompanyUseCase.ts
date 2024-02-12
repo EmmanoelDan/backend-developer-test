@@ -1,4 +1,3 @@
-import { Company } from "../../domain/entities/Company";
 import { companyRepository } from "../repositories/CompaniesRepository";
 
 export class CompanyUseCase {
@@ -7,4 +6,11 @@ export class CompanyUseCase {
 
         return companies
     }
+
+    async getCompany(id: string) {
+        const company = await companyRepository.findOneBy({ id: id });
+
+        return company;
+    }
+
 }
