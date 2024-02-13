@@ -1,16 +1,18 @@
-import { companyRepository } from "../repositories/CompaniesRepository";
+import { CompanyRepository } from "../repositories/CompaniesRepository";
 
 export class CompanyUseCase {
     async list() {
-        const companies = await companyRepository.find();
+        const companies = new CompanyRepository();
+        const result = await companies.find();
 
-        return companies
+        return result
     }
 
     async getCompany(id: string) {
-        const company = await companyRepository.findOneBy({ id: id });
+        const company = new CompanyRepository();
+        const result = await company.findById(id);
 
-        return company;
+        return result;
     }
 
 }

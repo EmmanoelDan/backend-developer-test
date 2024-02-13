@@ -4,15 +4,15 @@ import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 export class Company {
 
     @PrimaryGeneratedColumn('uuid')
-    id: string;
-
+    public id?: string;
+    
     @Column('text',{nullable:true})
-    name: string;
+    public name?: string;
 
     @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
-    created_at!: Date;
+    public created_at?: Date;
 
     @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP', onUpdate: 'CURRENT_TIMESTAMP' })
-    updated_at!: Date;
+    public updated_at?: Date;
 
 }
