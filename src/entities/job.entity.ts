@@ -1,5 +1,13 @@
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
+export enum Status {
+    DRAFT = "draft",
+    PUBLISHED = "published",
+    ARCHIVED = "archived",
+    REJECTED = "rejected",
+
+}
+
 @Entity('jobs')
 export class Job {
     @PrimaryGeneratedColumn('uuid')
@@ -14,8 +22,8 @@ export class Job {
     location?: string;
     @Column('text',{nullable:true})
     notes?: string;
-    @Column('text',{nullable:true})
-    status?: string;
+    @Column('enum',{enum:Status, default: Status.DRAFT})
+    status?: Status;
     @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
     created_at?: Date;
     @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP', onUpdate: 'CURRENT_TIMESTAMP' })
