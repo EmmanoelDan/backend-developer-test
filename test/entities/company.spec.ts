@@ -1,5 +1,5 @@
 import {expect, test} from "vitest"
-import {Company} from "../../src/entities/company.entity"
+import {Company} from "../../src/domain/entities/company.entity"
 
 
 test('create a new company', () => {

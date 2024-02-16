@@ -1,5 +1,5 @@
 import {expect, test} from "vitest"
-import {Job} from "../../src/entities/job.entity"
+import {Job} from "../../src/domain/entities/job.entity"
 
 
 test('create a new job', () => {
