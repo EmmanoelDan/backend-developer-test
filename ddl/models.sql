@@ -1,3 +1,6 @@
+-- Create extension uuid if not exists
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+
 -- Creating ENUM types to store position status
 create type job_status as enum ('draft', 'published', 'archived', 'rejected');
 

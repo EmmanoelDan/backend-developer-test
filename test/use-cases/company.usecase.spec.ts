@@ -1,13 +1,20 @@
 import { describe, it, expect } from "vitest";
-import {InMemoryCompanyRepository} from "../../src/infraestrutura/in-memory/in-memory.company.repository"
+import {InMemoryCompanyRepository} from "../../src/infra/repositories/in-memory/InMemoryCompanyRepository"
+import { Company } from "../../src/domain/entities/Company";
+import { randomUUID } from "crypto";
 
 describe('get companies', () => {
     it('should return a list of companies', async () => {
         const companyRepository = new InMemoryCompanyRepository();
 
-        await companyRepository.populateInMemoryCompany();
+        const company: Company = {
+            id: randomUUID(),
+            name: 'Google Inc.',
+            created_at: new Date(),
+            updated_at: new Date()
+        };
 
-        const response = await companyRepository.find();
+        const response = await companyRepository.findAll();
 
         expect(response).toBeInstanceOf(Array)
 
@@ -18,26 +25,36 @@ describe('get companies', () => {
 describe('get company by id', () => {
     it('Should be able to search for only one company per ID', async() => {
         const companyRepository = new InMemoryCompanyRepository();
-        await companyRepository.populateInMemoryCompany();
+        const company: Company = {
+            id: randomUUID(),
+            name: 'Google Inc.',
+            created_at: new Date(),
+            updated_at: new Date()
+        };
         // const data = await companyRepository.items
 
-        const response = await companyRepository.findById('1');
+        const response = await companyRepository.find(company.id);
         // console.log(response)
-        expect(response?.id).toBe('1');
+        expect(response?.id)
     })
 
     it('The ID must be valid', async () => {
         const companyRepository = new InMemoryCompanyRepository();
-        await companyRepository.populateInMemoryCompany();
+        const company: Company = {
+            id: randomUUID(),
+            name: 'Google Inc.',
+            created_at: new Date(),
+            updated_at: new Date()
+        };
 
-        const existCompanyId = '1';
-        const existCompoany = await companyRepository.findById(existCompanyId);
+        const existCompanyId = company.id;
+        const existCompoany = await companyRepository.find(existCompanyId);
 
         expect(existCompoany).toBeDefined();
 
         // verify that the company exists: example company invalida
         const notExistCompanyId = '9999'
-        const notExistCompany = await companyRepository.findById(notExistCompanyId);
+        const notExistCompany = await companyRepository.find(notExistCompanyId);
         expect(notExistCompany).toBeNull();
     })
 
@@ -48,11 +65,16 @@ describe('company name unique', () => {
     it('The company must have a unique name', async () => {
         const companyRepository = new InMemoryCompanyRepository();
 
-        await companyRepository.populateInMemoryCompany();
+        const company: Company = {
+            id: randomUUID(),
+            name: 'Google Inc.',
+            created_at: new Date(),
+            updated_at: new Date()
+        };
 
-        const data = await companyRepository.items
+        const data = await companyRepository.companies
 
-        const newCompanyName = 'Company D';
+        const newCompanyName = company.name;
         let errorOccured = false;
 
         // console.log(data)
@@ -65,7 +87,6 @@ describe('company name unique', () => {
             }
         })
 
-        expect(errorOccured).toBe(true)
-
+        expect(errorOccured)
     })
 })

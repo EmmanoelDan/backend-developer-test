@@ -1,0 +1,23 @@
+app: node-serverless
+service: node-serverless
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: nodejs20.x
+  region: 'us-east-1'
+  memorySize: 512
+  iamRoleStatements:
+      
+
+functions:
+  lambdaFunc:
+    handler: src/shared/utils/lambdaFunc.handler
+    events:
+      - httpApi:
+          path: /feed
+          method: get
+
+plugins:
+  - serverless-offline
+  - serverless-plugin-typescript

@@ -10,11 +10,11 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-enum JobStatus {
-  DRAFT
-  PUBLISHED
-  ARCHIVED
-  REJECTED
+enum job_status {
+  draft
+  published
+  archived 
+  rejected
 }
 
 model Company {
@@ -34,7 +34,7 @@ model Job {
   description String
   location String
   notes String
-  status JobStatus @default(DRAFT)
+  status job_status @default(draft)
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
 
@@ -42,6 +42,5 @@ model Job {
   @@index([status])
   @@map("jobs")
 }
-
 
 

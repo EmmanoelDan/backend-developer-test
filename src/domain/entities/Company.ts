@@ -1,9 +1,15 @@
+import { v4 as uuidV4 } from "uuid";
 
 export class Company {
-    public constructor(
-        public id: string,
-        public readonly name: string,
-        public readonly created_at: Date,
-        public readonly updated_at: Date
-    ){}
+    id?: string
+    name!: string
+    created_at!: Date
+    updated_at!: Date
+
+    constructor(){
+
+        if(!this.id) {
+            this.id = uuidV4();
+        }
+    }
 }
