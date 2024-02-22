@@ -1,10 +1,12 @@
 import { SQSClient } from '@aws-sdk/client-sqs'
+import * as dotenv from "dotenv";
+dotenv.config();
 
 export const sqs = new SQSClient({
-    region: 'us-east-1',
+    region: process.env.AWS_REGION,
 
     credentials: {
-        accessKeyId: "AKIAU6GD2NYEJMNNTYEL",
-        secretAccessKey: "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"
+        accessKeyId: process.env.AWS_ACCESS_KEY as string,
+        secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY as string
     }
 })
