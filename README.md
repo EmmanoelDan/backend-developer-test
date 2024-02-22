@@ -36,6 +36,18 @@ cp .env.example .env
 
 Fill in and change it with the necessary information
 
+Prisma:
+
+**migrate**
+```
+npm run migrate
+```
+
+**datagenerate**
+```
+npm run default-data
+```
+
 Run:
 
 ```
