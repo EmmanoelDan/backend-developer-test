@@ -53,3 +53,10 @@ npm run start:dev
 - DELETE /job/:job_id
 - PUT /job/:job_id/archived
 - GET /feed
+
+# Observações
+
+In comments.md there is more information on decisions and improvements
+https://github.com/EmmanoelDan/backend-developer-test/blob/891fde8e5ecb66830bdee214079d98672bbbc70c/COMMENTS.md
+
+
